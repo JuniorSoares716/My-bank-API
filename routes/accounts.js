@@ -1,8 +1,8 @@
-var express = require('express');
+const express = require('express');
 
-var fs = require('fs').promises;
+const fs = require('fs').promises;
 
-var router = express.Router();
+const router = express.Router();
 
 //Rotas
 router.post("/", async (req, res) => {
@@ -21,9 +21,11 @@ router.post("/", async (req, res) => {
     await fs.writeFile(global.filename, JSON.stringify(json));
 
     res.send(account);
+    logger.info(`POST /account - ${JSON.stringify(account)}`);
 
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`POST /account - ${error.message}`);
   }
 });
 
@@ -35,8 +37,12 @@ router.get('/', async (_, res) => {
     delete dataJson.nextId;
     res.send(dataJson);
 
+    logger.info("GET /account");
+
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`GET /account - ${error.message}`);
+
   }
 });
 
@@ -59,12 +65,12 @@ router.get('/:id', async (req, res) => {
 
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`GET /account/:id - ${error.message}`);
+
   }
 });
 
 router.delete("/:id", async (req, res) => {
-
-
 
   try {
     let id = Number(req.params.id);
@@ -80,8 +86,12 @@ router.delete("/:id", async (req, res) => {
 
     res.end();
 
+    logger.info(`DELETE /account/:id ${id}`);
+
+
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`DELETE /account/:id ${error.message}`);
   }
 });
 
@@ -109,9 +119,12 @@ router.put("/", async (req, res) => {
     await fs.writeFile(global.filename, JSON.stringify(dataJson));
 
     res.end();
+    logger.info(`PUT /account - ${JSON.stringify(newAccount)}`)
 
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`DELETE /account/:id ${error.message}`);
+
   }
 });
 
@@ -139,9 +152,12 @@ router.post("/transation", async (req, res) => {
     await fs.writeFile(global.filename, JSON.stringify(dataJson));
 
     res.send(dataJson.accounts[index]);
+    logger.info(`POST /account/transation - ${JSON.stringify(params)}`)
 
   } catch (error) {
     res.status(400).send({ error: error.message });
+    logger.error(`POST /account/transation ${error.message}`);
+
   }
 });
 module.exports = router;
