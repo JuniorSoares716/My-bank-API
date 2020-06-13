@@ -42,3 +42,12 @@
 2020-06-13T15:47:17.454Z [MY BANK API] info: POST /account/transation - {"id":12,"value":-5000}
 2020-06-13T15:47:19.393Z [MY BANK API] info: POST /account/transation - {"id":12,"value":-5000}
 2020-06-13T15:47:21.370Z [MY BANK API] error: POST /account/transation Saldo insuficiente
+2020-06-13T15:57:33.821Z [MY BANK API] info: API start
+2020-06-13T16:24:44.511Z [MY BANK API] info: API start
+2020-06-13T16:24:56.641Z [MY BANK API] info: GET /account
+2020-06-13T16:25:31.424Z [MY BANK API] info: POST /account/transation - {"id":12,"value":10}
+2020-06-13T16:25:39.622Z [MY BANK API] info: POST /account/transation - {"id":12,"value":11}
+2020-06-13T16:27:55.474Z [MY BANK API] info: API start
+2020-06-13T16:32:30.051Z [MY BANK API] info: API start
+2020-06-13T16:34:19.323Z [MY BANK API] info: API start
+2020-06-13T16:34:24.535Z [MY BANK API] info: GET /account

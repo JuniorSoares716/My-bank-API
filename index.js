@@ -1,12 +1,18 @@
-const express = require('express'); // iniciando o express
-const fs = require('fs').promises; //para criação de arquivo
-const winston = require('winston');
+import express from "express";
+import winston from "winston";
+import { promises } from "fs";
 
-const router = require("./routes/accounts");
+
+import router from "./routes/accounts.js";
+
 
 const app = express(); // estanciando o express na variavel app
 
 global.filename = 'accounts.json';
+
+
+const readFile = promises.readFile;
+const writeFile = promises.writeFile;
 
 
 
@@ -38,14 +44,14 @@ app.use('/account', router);
 app.listen(3000, async () => {
 
     try {
-        await fs.readFile(global.filename, "utf8");
+        await readFile(global.filename, "utf8");
         logger.info("API start");
     } catch (error) {
         const initialJson = {
             nextId: 1,
             accounts: []
         };
-        fs.writeFile(global.filename, JSON.stringify(initialJson)).catch(error => {
+        await writeFile(global.filename, JSON.stringify(initialJson)).catch(error => {
             logger.error(error);
         });
     }
